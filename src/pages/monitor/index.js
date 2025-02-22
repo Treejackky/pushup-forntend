@@ -81,7 +81,7 @@ const VideoRecorder = () => {
 
   return (
     <div>
-      <h1>Video Recorder</h1>
+
       {hasCamera ? (
         <div>
           <video ref={videoRef} autoPlay playsInline />
