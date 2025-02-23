@@ -1,14 +1,16 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './view/landingpage/Home';
-function App() {
+import Home from "./pages/home/index";
+import { getLang } from "./utils/tool";
+import { Layout } from "./components/layouts/layout";
+import { useTranslation } from "react-i18next";
+
+export default function App() {
+  const { t } = useTranslation();
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDF7FE]">
-      <Navbar />
-        <Outlet />
-       
-    </div>
+    <>
+      <Layout>
+        <Home/>
+      </Layout>
+    </>
   );
 }
-
-export default App;
