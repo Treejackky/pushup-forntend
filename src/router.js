@@ -1,16 +1,17 @@
 import { createBrowserRouter, Navigate, Outlet, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import App from "./app";
-import VideoPage from "./pages/monitor/index"; // Import หน้า Video
+import VideoPage from "./pages/monitor/index";
+import Login from "./pages/login/index";
+import Register from "./pages/register/index";
 
-import NotFoundPage from "./404"; // Import หน้า 404
+import NotFoundPage from "./404"; 
 
 const languages = ["en", "th"];
 
 const LanguageGuard = () => {
   const { lang } = useParams();
-  return languages.includes(lang) ? <Outlet /> : <NotFoundPage />;
+  return languages.includes(lang);
 };
 
 const initRoute = [
@@ -21,6 +22,8 @@ const initRoute = [
     children: [
       { index: true, element: <App /> },
       { path: "video", element: <VideoPage /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

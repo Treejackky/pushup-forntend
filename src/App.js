@@ -1,11 +1,7 @@
 import Home from "./pages/home/index";
-import { getLang } from "./utils/tool";
-import { Layout } from "./components/layouts/layout";
-import { useTranslation } from "react-i18next";
+import { Layout } from "./components/layouts/Layout";
 
 export default function App() {
-  const { t } = useTranslation();
-
   return (
     <>
       <Layout>
