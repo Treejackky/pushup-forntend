@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from "react-router-dom";
 
-import App from './app';
+
 import reportWebVitals from './_config/reportWebVitals';
 import './_config/i18n';
 
