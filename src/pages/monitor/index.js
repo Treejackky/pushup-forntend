@@ -10,7 +10,7 @@ const VideoRecorder = () => {
   const recordedChunks = useRef([]);
 
   useEffect(() => {
-    // Access camera when component mounts
+    // เข้าถึงกล้องเมื่อ component ถูก mount
     const getCameraStream = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -33,7 +33,7 @@ const VideoRecorder = () => {
 
     getCameraStream();
 
-    // Cleanup on component unmount
+    // Cleanup เมื่อ component ถูก unmount
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const stream = videoRef.current.srcObject;
@@ -80,30 +80,57 @@ const VideoRecorder = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Video Recorder</h1>
 
-      {hasCamera ? (
-        <div>
-          <video ref={videoRef} autoPlay playsInline />
-          <div>
-            {isRecording ? (
-              <button onClick={stopRecording}>Stop Recording</button>
-            ) : (
-              <button onClick={startRecording}>Start Recording</button>
-            )}
+        {hasCamera ? (
+          <div className="flex flex-col items-center">
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              className="w-full max-w-md rounded-md border border-gray-300 mb-4"
+            />
+            <div className="mb-4">
+              {isRecording ? (
+                <button
+                  onClick={stopRecording}
+                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 mr-2"
+                >
+                  Stop Recording
+                </button>
+              ) : (
+                <button
+                  onClick={startRecording}
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 mr-2"
+                >
+                  Start Recording
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <p>No camera available</p>
-      )}
+        ) : (
+          <p className="text-center text-gray-600">No camera available</p>
+        )}
 
-      {videoURL && (
-        <div>
-          <h3>Recorded Video:</h3>
-          <video src={videoURL} controls />
-          <button onClick={UploadVideo}>Upload</button>
-        </div>
-      )}
+        {videoURL && (
+          <div className="mt-6">
+            <h3 className="text-xl font-semibold text-gray-700 mb-4">Recorded Video:</h3>
+            <video
+              src={videoURL}
+              controls
+              className="w-full max-w-md rounded-md border border-gray-300 mb-4"
+            />
+            <button
+              onClick={UploadVideo}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Upload
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

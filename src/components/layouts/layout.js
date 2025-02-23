@@ -1,12 +1,17 @@
-import React from 'react'
-import Navbar from './Navbar'
-import '../../public/theme/layout.css'
-const Layout = ({ children }) => {
+import React from "react";
+import Navbar from "./Navbar";
+import Footer from "./Footer"
+import { Outlet } from "react-router-dom";
+import "../../public/theme/layout.css";
+
+const Layout = () => {
   return (
     <div className="layout">
       <Navbar />
-      {children}
+      <Outlet />
+      <Footer />
     </div>
-  )
-}
-export { Layout }
+  );
+};
+
+export { Layout };
